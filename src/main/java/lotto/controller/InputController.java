@@ -8,13 +8,34 @@ import lotto.view.output.InputMessage;
 public class InputController {
 
     public InputController() {
-        InputMessage.money();
-        new InputMoney();
+        while (true) {
+            try {
+                InputMessage.money();
+                new InputMoney();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
-        InputMessage.winningNumber();
-        new InputWinningNumber();
+        while (true) {
+            try {
+                InputMessage.winningNumber();
+                new InputWinningNumber();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
-        InputMessage.bonus();
-        new InputBonusNumber();
+        while (true) {
+            try {
+                InputMessage.bonus();
+                new InputBonusNumber();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
