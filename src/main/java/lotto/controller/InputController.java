@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.view.input.InputBonusNumber;
 import lotto.view.input.InputMoney;
 import lotto.view.input.InputWinningNumber;
 import lotto.view.output.InputMessage;
@@ -12,5 +13,8 @@ public class InputController {
 
         InputMessage.winningNumber();
         new InputWinningNumber();
+
+        InputMessage.bonus();
+        new InputBonusNumber();
     }
 }
