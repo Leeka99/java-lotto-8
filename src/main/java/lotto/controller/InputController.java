@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoPapers;
 import lotto.view.input.InputBonusNumber;
 import lotto.view.input.InputMoney;
@@ -27,6 +28,7 @@ public class InputController {
             try {
                 InputMessage.winningNumber();
                 new InputWinningNumber();
+                new Lotto(InputWinningNumber.getWinningNumber());
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
