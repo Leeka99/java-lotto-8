@@ -19,6 +19,12 @@ public class InputBonusNumber {
         if (!input.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
         }
+        if (Integer.parseInt(input) == 0) {
+            throw new IllegalArgumentException("[ERROR] 0 입력 불가. 1 ~ 45 사이의 숫자를 입력해주세요.");
+        }
+        if (45 < Integer.parseInt(input)) {
+            throw new IllegalArgumentException("[ERROR] 45 초과 입력 불가. 1 ~ 45 사이의 숫자를 입력해주세요.");
+        }
     }
 
     private String inputBonus() {
