@@ -17,6 +17,7 @@ public class LottoPapers {
     }
 
     private void validate(int money) {
+        if (money == 0) throw new IllegalArgumentException("[ERROR] 0은 입력할 수 없습니다. 1000원 단위로 입력해주세요.");
         if (money % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요.");
         }
