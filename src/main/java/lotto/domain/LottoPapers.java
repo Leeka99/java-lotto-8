@@ -8,6 +8,10 @@ public class LottoPapers {
 
     private static int paperNumber;
     private static List<List<Integer>> lottos = new ArrayList<>();
+    private static final int MONEY_START = 1000;
+    private static final int CHECK_MONEY_VALUE = 0;
+    private static final int START_INDEX = 0;
+
     LottoGeneration lotto;
 
     public LottoPapers(int money) {
@@ -18,16 +22,16 @@ public class LottoPapers {
     }
 
     private void validate(int money) {
-        if (money == 0) {
-            throw new IllegalArgumentException("[ERROR] 0은 입력할 수 없습니다. 1000원 단위로 입력해주세요.");
+        if (money < MONEY_START) {
+            throw new IllegalArgumentException("[ERROR] 1000원 이하는 입력할 수 없습니다. 1000원 단위로 입력해주세요.");
         }
-        if (money % 1000 != 0) {
+        if (money % MONEY_START != CHECK_MONEY_VALUE) {
             throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요.");
         }
     }
 
     private int calculateLottoPaperNumber(int money) {
-        return money / 1000;
+        return money / MONEY_START;
     }
 
     private List<Integer> lotto() {
@@ -41,7 +45,7 @@ public class LottoPapers {
     }
 
     private void generateLotto(int lottoPaperNumber) {
-        for (int i = 0; i < lottoPaperNumber; i++) {
+        for (int index = START_INDEX; index < lottoPaperNumber; index++) {
             lottos.add(sortLotto());
         }
     }

@@ -6,7 +6,13 @@ import java.util.List;
 
 public class CalculateWinning {
 
-    private static List<Integer> lottoResult = new ArrayList<>(Collections.nCopies(5, 0));
+    private static final int START_NUMBER = 0;
+    private static final int EQUAL_VALUE = 1;
+    private static final int PLUS_ONE = 1;
+    private static final int RATE_NUMBER = 100;
+
+    private static List<Integer> lottoResult = new ArrayList<>(
+        Collections.nCopies(Winning.values().length, START_NUMBER));
     private static double rate;
 
     public CalculateWinning(List<List<Integer>> lottoPapers, List<Integer> lotto, int bonus,
@@ -16,9 +22,9 @@ public class CalculateWinning {
     }
 
     private int count(List<Integer> numbers, List<Integer> lotto) {
-        int count = 0;
+        int count = START_NUMBER;
         for (int winningNumber : lotto) {
-            if (Collections.frequency(numbers, winningNumber) == 1) {
+            if (Collections.frequency(numbers, winningNumber) == EQUAL_VALUE) {
                 count++;
             }
         }
@@ -26,16 +32,21 @@ public class CalculateWinning {
     }
 
     private void saveCount(int count, List<Integer> numbers, int bonus) {
-        if (count == 5 && Collections.frequency(numbers, bonus) == 1) {
-            lottoResult.set(3, lottoResult.get(3) + 1);
+        if (count == Winning.FIVE_WITH_BONUS.getWinningCount() && Collections.frequency(numbers, bonus) == EQUAL_VALUE) {
+            lottoResult.set(Winning.FIVE_WITH_BONUS.ordinal(), lottoResult.get(Winning.FIVE_WITH_BONUS.ordinal()) + PLUS_ONE);
             return;
         }
-        if (count == 6) {
-            lottoResult.set(4, lottoResult.get(4) + 1);
-            return;
+        if (count == Winning.SIX.getWinningCount()) {
+            lottoResult.set(Winning.SIX.ordinal(), lottoResult.get(Winning.SIX.ordinal()) + PLUS_ONE);
         }
-        if (count == 3 || count == 4 || count == 5) {
-            lottoResult.set(count - 3, lottoResult.get(count - 3) + 1);
+        if (count == Winning.THREE.getWinningCount()) {
+            lottoResult.set(Winning.THREE.ordinal(), lottoResult.get(Winning.THREE.ordinal()) + PLUS_ONE);
+        }
+        if (count == Winning.FOUR.getWinningCount()) {
+            lottoResult.set(Winning.FOUR.ordinal(), lottoResult.get(Winning.FOUR.ordinal()) + PLUS_ONE);
+        }
+        if (count == Winning.FIVE.getWinningCount()) {
+            lottoResult.set(Winning.FIVE.ordinal(), lottoResult.get(Winning.FIVE.ordinal()) + PLUS_ONE);
         }
     }
 
@@ -47,8 +58,8 @@ public class CalculateWinning {
     }
 
     private double calculatePrize() {
-        double prize = 0;
-        for (int index = 0; index < 5; index++) {
+        double prize = START_NUMBER;
+        for (int index = START_NUMBER; index < lottoResult.size(); index++) {
             prize += Winning.values()[index].getPrize() * lottoResult.get(index);
         }
 
@@ -56,9 +67,8 @@ public class CalculateWinning {
     }
 
     private void winningRate(int money) {
-        // 수익률 : 당첨금액합 / 구입금액 * 100
         double prize = calculatePrize();
-        rate = (prize / (double) money) * 100;
+        rate = (prize / (double) money) * RATE_NUMBER;
     }
 
     public static List<Integer> getLottoResult() {

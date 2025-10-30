@@ -7,6 +7,9 @@ import java.util.List;
 public class InputBonusNumber {
 
     private static int bonus;
+    private static final int startNumber = 1;
+    private static final int endNumber = 45;
+    private static final int EQUAL_VALUE = 1;
 
     public InputBonusNumber(List<Integer> winningNumbers) {
         String input = inputBonus();
@@ -21,13 +24,13 @@ public class InputBonusNumber {
         if (!input.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
         }
-        if (Integer.parseInt(input) == 0) {
+        if (Integer.parseInt(input) < startNumber) {
             throw new IllegalArgumentException("[ERROR] 0 입력 불가. 1 ~ 45 사이의 숫자를 입력해주세요.");
         }
-        if (45 < Integer.parseInt(input)) {
+        if (endNumber < Integer.parseInt(input)) {
             throw new IllegalArgumentException("[ERROR] 45 초과 입력 불가. 1 ~ 45 사이의 숫자를 입력해주세요.");
         }
-        if (Collections.frequency(winningNumbers, Integer.parseInt(input)) == 1) {
+        if (Collections.frequency(winningNumbers, Integer.parseInt(input)) == EQUAL_VALUE) {
             throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 로또 번호와 중복되지 않는 값을 입력해주세요.");
         }
 

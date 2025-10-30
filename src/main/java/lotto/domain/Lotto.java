@@ -6,6 +6,10 @@ import java.util.List;
 public class Lotto {
 
     private final List<Integer> numbers;
+    private static final int LOTTO_LENGTH = 6;
+    private static final int LOTTO_START_NUMBER = 1;
+    private static final int LOTTO_END_NUMBER = 45;
+    private static final int EQUAL_VALUE = 1;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -13,17 +17,17 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
         for (int number : numbers) {
-            if (Collections.frequency(numbers, number) != 1) {
+            if (Collections.frequency(numbers, number) != EQUAL_VALUE) {
                 throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력할 수 없습니다.");
             }
-            if (number == 0) {
+            if (number < LOTTO_START_NUMBER) {
                 throw new IllegalArgumentException("[ERROR] 0 입력 불가. 1 ~ 45 사이의 숫자를 입력해주세요.");
             }
-            if (45 < number) {
+            if (LOTTO_END_NUMBER < number) {
                 throw new IllegalArgumentException("[ERROR] 45 초과 불가. 1 ~ 45 사이의 숫자를 입력해주세요.");
             }
         }
