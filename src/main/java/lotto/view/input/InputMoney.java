@@ -2,6 +2,7 @@ package lotto.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.util.exception.MoneyValidationException;
+import lotto.util.exception.messege.MoneyExceptionMessage;
 
 public class InputMoney {
 
@@ -19,10 +20,10 @@ public class InputMoney {
 
     private void validate(String input) {
         if (input.isBlank()) {
-            throw new MoneyValidationException(MoneyValidationException.NOT_BLANK);
+            throw new MoneyValidationException(MoneyExceptionMessage.NOT_BLANK);
         }
         if (!input.chars().allMatch(Character::isDigit)) {
-            throw new MoneyValidationException(MoneyValidationException.NOT_DIGIT);
+            throw new MoneyValidationException(MoneyExceptionMessage.NOT_DIGIT);
         }
     }
 

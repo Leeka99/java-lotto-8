@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.util.config.NumberConfig;
 import lotto.util.config.MoneyConfig;
 import lotto.util.exception.MoneyValidationException;
+import lotto.util.exception.messege.MoneyExceptionMessage;
 
 public class LottoPapers {
 
@@ -24,10 +25,10 @@ public class LottoPapers {
 
     private void validate(int money) {
         if (money < MoneyConfig.MONEY_START.getNumber()) {
-            throw new MoneyValidationException(MoneyValidationException.NOT_ENOUGT_MONEY);
+            throw new MoneyValidationException(MoneyExceptionMessage.NOT_ENOUGT_MONEY);
         }
         if (money % MoneyConfig.MONEY_START.getNumber() != MoneyConfig.CHECK_MONEY_VALUE.getNumber()) {
-            throw new MoneyValidationException(MoneyValidationException.NOT_REMAINDER_ZERO);
+            throw new MoneyValidationException(MoneyExceptionMessage.NOT_REMAINDER_ZERO);
         }
     }
 

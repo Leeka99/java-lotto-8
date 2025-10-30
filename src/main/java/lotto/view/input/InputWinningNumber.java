@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.util.exception.LottoValidationException;
+import lotto.util.exception.messege.LottoExceptionMessage;
 
 public class InputWinningNumber {
 
@@ -25,13 +26,13 @@ public class InputWinningNumber {
 
     private List<String> validate(String input) {
         if (input.isBlank()) {
-            throw new LottoValidationException(LottoValidationException.NOT_BLANK);
+            throw new LottoValidationException(LottoExceptionMessage.NOT_BLANK);
         }
 
         List<String> winningNumber = seperate(input);
         for (String number : winningNumber) {
             if (!number.chars().allMatch(Character::isDigit)) {
-                throw new LottoValidationException(LottoValidationException.NOT_REST);
+                throw new LottoValidationException(LottoExceptionMessage.NOT_REST);
             }
         }
         return winningNumber;
