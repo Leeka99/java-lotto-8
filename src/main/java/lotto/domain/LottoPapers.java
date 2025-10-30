@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoPapers {
@@ -33,9 +34,15 @@ public class LottoPapers {
         return lotto.generate();
     }
 
+    private List<Integer> sortLotto() {
+        List<Integer> lottoNumbers = new ArrayList<>(lotto());
+        Collections.sort(lottoNumbers, Integer::compareTo);
+        return lottoNumbers;
+    }
+
     private void generateLotto(int lottoPaperNumber) {
         for (int i = 0; i < lottoPaperNumber; i++) {
-            lottos.add(lotto());
+            lottos.add(sortLotto());
         }
     }
 
