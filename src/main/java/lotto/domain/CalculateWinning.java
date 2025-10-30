@@ -3,16 +3,15 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.util.config.NumberConfig;
+import lotto.util.config.MoneyConfig;
 
 public class CalculateWinning {
 
-    private static final int START_NUMBER = 0;
-    private static final int EQUAL_VALUE = 1;
-    private static final int PLUS_ONE = 1;
-    private static final int RATE_NUMBER = 100;
+
 
     private static List<Integer> lottoResult = new ArrayList<>(
-        Collections.nCopies(Winning.values().length, START_NUMBER));
+        Collections.nCopies(Winning.values().length, NumberConfig.START_NUMBER));
     private static double rate;
 
     public CalculateWinning(List<List<Integer>> lottoPapers, List<Integer> lotto, int bonus,
@@ -22,9 +21,9 @@ public class CalculateWinning {
     }
 
     private int count(List<Integer> numbers, List<Integer> lotto) {
-        int count = START_NUMBER;
+        int count = NumberConfig.START_NUMBER;
         for (int winningNumber : lotto) {
-            if (Collections.frequency(numbers, winningNumber) == EQUAL_VALUE) {
+            if (Collections.frequency(numbers, winningNumber) == NumberConfig.EQUAL_VALUE) {
                 count++;
             }
         }
@@ -32,21 +31,21 @@ public class CalculateWinning {
     }
 
     private void saveCount(int count, List<Integer> numbers, int bonus) {
-        if (count == Winning.FIVE_WITH_BONUS.getWinningCount() && Collections.frequency(numbers, bonus) == EQUAL_VALUE) {
-            lottoResult.set(Winning.FIVE_WITH_BONUS.ordinal(), lottoResult.get(Winning.FIVE_WITH_BONUS.ordinal()) + PLUS_ONE);
+        if (count == Winning.FIVE_WITH_BONUS.getWinningCount() && Collections.frequency(numbers, bonus) == NumberConfig.EQUAL_VALUE) {
+            lottoResult.set(Winning.FIVE_WITH_BONUS.ordinal(), lottoResult.get(Winning.FIVE_WITH_BONUS.ordinal()) + NumberConfig.PLUS_ONE);
             return;
         }
         if (count == Winning.SIX.getWinningCount()) {
-            lottoResult.set(Winning.SIX.ordinal(), lottoResult.get(Winning.SIX.ordinal()) + PLUS_ONE);
+            lottoResult.set(Winning.SIX.ordinal(), lottoResult.get(Winning.SIX.ordinal()) + NumberConfig.PLUS_ONE);
         }
         if (count == Winning.THREE.getWinningCount()) {
-            lottoResult.set(Winning.THREE.ordinal(), lottoResult.get(Winning.THREE.ordinal()) + PLUS_ONE);
+            lottoResult.set(Winning.THREE.ordinal(), lottoResult.get(Winning.THREE.ordinal()) + NumberConfig.PLUS_ONE);
         }
         if (count == Winning.FOUR.getWinningCount()) {
-            lottoResult.set(Winning.FOUR.ordinal(), lottoResult.get(Winning.FOUR.ordinal()) + PLUS_ONE);
+            lottoResult.set(Winning.FOUR.ordinal(), lottoResult.get(Winning.FOUR.ordinal()) + NumberConfig.PLUS_ONE);
         }
         if (count == Winning.FIVE.getWinningCount()) {
-            lottoResult.set(Winning.FIVE.ordinal(), lottoResult.get(Winning.FIVE.ordinal()) + PLUS_ONE);
+            lottoResult.set(Winning.FIVE.ordinal(), lottoResult.get(Winning.FIVE.ordinal()) + NumberConfig.PLUS_ONE);
         }
     }
 
@@ -58,8 +57,8 @@ public class CalculateWinning {
     }
 
     private double calculatePrize() {
-        double prize = START_NUMBER;
-        for (int index = START_NUMBER; index < lottoResult.size(); index++) {
+        double prize = NumberConfig.START_NUMBER;
+        for (int index = NumberConfig.START_NUMBER; index < lottoResult.size(); index++) {
             prize += Winning.values()[index].getPrize() * lottoResult.get(index);
         }
 
@@ -68,7 +67,7 @@ public class CalculateWinning {
 
     private void winningRate(int money) {
         double prize = calculatePrize();
-        rate = (prize / (double) money) * RATE_NUMBER;
+        rate = (prize / (double) money) * MoneyConfig.RATE_NUMBER;
     }
 
     public static List<Integer> getLottoResult() {

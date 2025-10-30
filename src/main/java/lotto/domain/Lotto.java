@@ -2,14 +2,13 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
+import lotto.util.config.NumberConfig;
+import lotto.util.config.LottoConfig;
+import lotto.util.exception.LottoValidationException;
 
 public class Lotto {
 
     private final List<Integer> numbers;
-    private static final int LOTTO_LENGTH = 6;
-    private static final int LOTTO_START_NUMBER = 1;
-    private static final int LOTTO_END_NUMBER = 45;
-    private static final int EQUAL_VALUE = 1;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -17,18 +16,18 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_LENGTH) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LottoConfig.LOTTO_LENGTH) {
+            throw new LottoValidationException(LottoValidationException.NOT_SIX);
         }
         for (int number : numbers) {
-            if (Collections.frequency(numbers, number) != EQUAL_VALUE) {
-                throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력할 수 없습니다.");
+            if (Collections.frequency(numbers, number) != NumberConfig.EQUAL_VALUE) {
+                throw new LottoValidationException(LottoValidationException.DUPLICATE_NUMBERS);
             }
-            if (number < LOTTO_START_NUMBER) {
-                throw new IllegalArgumentException("[ERROR] 0 입력 불가. 1 ~ 45 사이의 숫자를 입력해주세요.");
+            if (number < LottoConfig.LOTTO_START_NUMBER) {
+                throw new LottoValidationException(LottoValidationException.NOT_ZERO);
             }
-            if (LOTTO_END_NUMBER < number) {
-                throw new IllegalArgumentException("[ERROR] 45 초과 불가. 1 ~ 45 사이의 숫자를 입력해주세요.");
+            if (LottoConfig.LOTTO_END_NUMBER < number) {
+                throw new LottoValidationException(LottoValidationException.OVER_LOTTO_NUMBER);
             }
         }
     }

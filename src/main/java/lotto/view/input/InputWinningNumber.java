@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.util.exception.LottoValidationException;
 
 public class InputWinningNumber {
 
@@ -24,13 +25,13 @@ public class InputWinningNumber {
 
     private List<String> validate(String input) {
         if (input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 공백입력 불가합니다. 1000원 이상 입력해주세요.");
+            throw new LottoValidationException(LottoValidationException.NOT_BLANK);
         }
 
         List<String> winningNumber = seperate(input);
         for (String number : winningNumber) {
             if (!number.chars().allMatch(Character::isDigit)) {
-                throw new IllegalArgumentException("[ERROR] (,) 쉼표 외 문자는 입력 불가합니다.");
+                throw new LottoValidationException(LottoValidationException.NOT_REST);
             }
         }
         return winningNumber;

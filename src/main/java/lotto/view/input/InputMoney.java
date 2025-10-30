@@ -1,6 +1,7 @@
 package lotto.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.util.exception.MoneyValidationException;
 
 public class InputMoney {
 
@@ -18,10 +19,10 @@ public class InputMoney {
 
     private void validate(String input) {
         if (input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 공백입력 불가합니다. 1000원 이상 입력해주세요.");
+            throw new MoneyValidationException(MoneyValidationException.NOT_BLANK);
         }
         if (!input.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
+            throw new MoneyValidationException(MoneyValidationException.NOT_DIGIT);
         }
     }
 
