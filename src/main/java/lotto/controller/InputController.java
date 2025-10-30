@@ -11,6 +11,12 @@ import lotto.view.output.OutputLottoPapers;
 public class InputController {
 
     public InputController() {
+        money();
+        winningNumber();
+        bonus();
+    }
+
+    private void money() {
         while (true) {
             try {
                 InputMessage.money();
@@ -23,7 +29,9 @@ public class InputController {
                 System.out.println(e.getMessage());
             }
         }
+    }
 
+    private void winningNumber() {
         while (true) {
             try {
                 InputMessage.winningNumber();
@@ -34,7 +42,9 @@ public class InputController {
                 System.out.println(e.getMessage());
             }
         }
+    }
 
+    private void bonus() {
         while (true) {
             try {
                 InputMessage.bonus();
