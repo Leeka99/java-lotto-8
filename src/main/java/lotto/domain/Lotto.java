@@ -16,17 +16,17 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LottoConfig.LOTTO_LENGTH) {
+        if (numbers.size() != LottoConfig.LOTTO_LENGTH.getNumber()) {
             throw new LottoValidationException(LottoValidationException.NOT_SIX);
         }
         for (int number : numbers) {
-            if (Collections.frequency(numbers, number) != NumberConfig.EQUAL_VALUE) {
+            if (Collections.frequency(numbers, number) != NumberConfig.EQUAL_VALUE.getNumber()) {
                 throw new LottoValidationException(LottoValidationException.DUPLICATE_NUMBERS);
             }
-            if (number < LottoConfig.LOTTO_START_NUMBER) {
+            if (number < LottoConfig.LOTTO_START_NUMBER.getNumber()) {
                 throw new LottoValidationException(LottoValidationException.NOT_ZERO);
             }
-            if (LottoConfig.LOTTO_END_NUMBER < number) {
+            if (LottoConfig.LOTTO_END_NUMBER.getNumber() < number) {
                 throw new LottoValidationException(LottoValidationException.OVER_LOTTO_NUMBER);
             }
         }

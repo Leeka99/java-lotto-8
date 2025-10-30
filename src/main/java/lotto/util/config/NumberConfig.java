@@ -1,7 +1,17 @@
 package lotto.util.config;
 
-public class NumberConfig {
-    public static final int START_NUMBER = 0;
-    public static final int EQUAL_VALUE = 1;
-    public static final int PLUS_ONE = 1;
+public enum NumberConfig {
+    START_NUMBER(0),
+    EQUAL_VALUE(1),
+    PLUS_ONE(1);
+
+    private final int number;
+
+    NumberConfig (int number) {
+        this.number = number;
+    }
+
+    public int getNumber() {
+        return number;
+    }
 }

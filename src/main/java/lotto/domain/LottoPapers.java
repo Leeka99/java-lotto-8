@@ -23,16 +23,16 @@ public class LottoPapers {
     }
 
     private void validate(int money) {
-        if (money < MoneyConfig.MONEY_START) {
+        if (money < MoneyConfig.MONEY_START.getNumber()) {
             throw new MoneyValidationException(MoneyValidationException.NOT_ENOUGT_MONEY);
         }
-        if (money % MoneyConfig.MONEY_START != MoneyConfig.CHECK_MONEY_VALUE) {
+        if (money % MoneyConfig.MONEY_START.getNumber() != MoneyConfig.CHECK_MONEY_VALUE.getNumber()) {
             throw new MoneyValidationException(MoneyValidationException.NOT_REMAINDER_ZERO);
         }
     }
 
     private int calculateLottoPaperNumber(int money) {
-        return money / MoneyConfig.MONEY_START;
+        return money / MoneyConfig.MONEY_START.getNumber();
     }
 
     private List<Integer> lotto() {
@@ -46,7 +46,7 @@ public class LottoPapers {
     }
 
     private void generateLotto(int lottoPaperNumber) {
-        for (int index = NumberConfig.START_NUMBER; index < lottoPaperNumber; index++) {
+        for (int index = NumberConfig.START_NUMBER.getNumber(); index < lottoPaperNumber; index++) {
             lottos.add(sortLotto());
         }
     }

@@ -1,7 +1,17 @@
 package lotto.util.config;
 
-public class MoneyConfig {
-    public static final int RATE_NUMBER = 100;
-    public static final int MONEY_START = 1000;
-    public static final int CHECK_MONEY_VALUE = 0;
+public enum MoneyConfig {
+    RATE_NUMBER(100),
+    MONEY_START(1000),
+    CHECK_MONEY_VALUE(0);
+
+    private final int number;
+
+    MoneyConfig(int number) {
+        this.number = number;
+    }
+
+    public int getNumber() {
+        return number;
+    }
 }

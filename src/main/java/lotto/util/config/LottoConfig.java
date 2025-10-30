@@ -1,7 +1,17 @@
 package lotto.util.config;
 
-public class LottoConfig {
-    public static final int LOTTO_LENGTH = 6;
-    public static final int LOTTO_START_NUMBER = 1;
-    public static final int LOTTO_END_NUMBER = 45;
+public enum LottoConfig {
+    LOTTO_LENGTH(6),
+    LOTTO_START_NUMBER(1),
+    LOTTO_END_NUMBER(45);
+
+    private final int number;
+
+    LottoConfig(int number) {
+        this.number = number;
+    }
+
+    public int getNumber() {
+        return number;
+    }
 }

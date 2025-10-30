@@ -13,7 +13,7 @@ public class OutputWinningCount {
     }
 
     public static void printWinningCount(List<Integer> lottoResult) {
-        for (int index = NumberConfig.START_NUMBER; index < lottoResult.size(); index++) {
+        for (int index = NumberConfig.START_NUMBER.getNumber(); index < lottoResult.size(); index++) {
             int count = lottoResult.get(index);
             if (index == Winning.FIVE_WITH_BONUS.ordinal()) {
                 System.out.println(
