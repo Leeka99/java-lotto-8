@@ -6,7 +6,7 @@ import java.util.List;
 import lotto.util.config.NumberConfig;
 import lotto.util.config.LottoConfig;
 import lotto.util.exception.BonusValidationException;
-import lotto.util.exception.messege.BonusExceptionMessage;
+import lotto.util.exception.message.BonusExceptionMessage;
 
 public class InputBonusNumber {
 

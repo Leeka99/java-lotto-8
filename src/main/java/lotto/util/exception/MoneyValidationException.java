@@ -1,6 +1,6 @@
 package lotto.util.exception;
 
-import lotto.util.exception.messege.MoneyExceptionMessage;
+import lotto.util.exception.message.MoneyExceptionMessage;
 
 public class MoneyValidationException extends IllegalArgumentException {
 

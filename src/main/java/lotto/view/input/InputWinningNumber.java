@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.util.exception.LottoValidationException;
-import lotto.util.exception.messege.LottoExceptionMessage;
+import lotto.util.exception.message.LottoExceptionMessage;
 
 public class InputWinningNumber {
 

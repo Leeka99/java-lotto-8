@@ -1,6 +1,6 @@
 package lotto.util.exception;
 
-import lotto.util.exception.messege.BonusExceptionMessage;
+import lotto.util.exception.message.BonusExceptionMessage;
 
 public class BonusValidationException extends IllegalArgumentException {
 

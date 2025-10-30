@@ -8,6 +8,7 @@ public class LottoGenerator implements LottoGeneration {
 
     @Override
     public List<Integer> generate() {
-        return Randoms.pickUniqueNumbersInRange(LottoConfig.LOTTO_START_NUMBER.getNumber(), LottoConfig.LOTTO_END_NUMBER.getNumber(), LottoConfig.LOTTO_LENGTH.getNumber());
+        return Randoms.pickUniqueNumbersInRange(LottoConfig.LOTTO_START_NUMBER.getNumber(),
+            LottoConfig.LOTTO_END_NUMBER.getNumber(), LottoConfig.LOTTO_LENGTH.getNumber());
     }
 }

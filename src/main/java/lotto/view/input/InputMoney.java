@@ -2,7 +2,7 @@ package lotto.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.util.exception.MoneyValidationException;
-import lotto.util.exception.messege.MoneyExceptionMessage;
+import lotto.util.exception.message.MoneyExceptionMessage;
 
 public class InputMoney {
 
