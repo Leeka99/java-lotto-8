@@ -6,8 +6,6 @@ import lotto.util.config.LottoConfig;
 
 public class LottoGenerator implements LottoGeneration {
 
-
-
     @Override
     public List<Integer> generate() {
         return Randoms.pickUniqueNumbersInRange(LottoConfig.LOTTO_START_NUMBER, LottoConfig.LOTTO_END_NUMBER, LottoConfig.LOTTO_LENGTH);

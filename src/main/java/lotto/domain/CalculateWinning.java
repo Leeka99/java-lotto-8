@@ -3,12 +3,10 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.util.config.NumberConfig;
 import lotto.util.config.MoneyConfig;
+import lotto.util.config.NumberConfig;
 
 public class CalculateWinning {
-
-
 
     private static List<Integer> lottoResult = new ArrayList<>(
         Collections.nCopies(Winning.values().length, NumberConfig.START_NUMBER));
