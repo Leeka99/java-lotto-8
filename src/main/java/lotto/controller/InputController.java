@@ -38,7 +38,7 @@ public class InputController {
         while (true) {
             try {
                 InputMessage.bonus();
-                new InputBonusNumber();
+                new InputBonusNumber(InputWinningNumber.getWinningNumber());
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
