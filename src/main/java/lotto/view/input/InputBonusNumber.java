@@ -1,10 +1,9 @@
 package lotto.view.input;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.Collections;
 import java.util.List;
-import lotto.util.config.NumberConfig;
 import lotto.util.config.LottoConfig;
+import lotto.util.config.NumberConfig;
 import lotto.util.exception.BonusValidationException;
 import lotto.util.exception.message.BonusExceptionMessage;
 
@@ -12,9 +11,7 @@ public class InputBonusNumber {
 
     private static int bonus;
 
-
-    public InputBonusNumber(List<Integer> winningNumbers) {
-        String input = inputBonus();
+    public InputBonusNumber(String input, List<Integer> winningNumbers) {
         validate(input, winningNumbers);
         parseToInt(input);
     }
@@ -32,14 +29,11 @@ public class InputBonusNumber {
         if (LottoConfig.LOTTO_END_NUMBER.getNumber() < Integer.parseInt(input)) {
             throw new BonusValidationException(BonusExceptionMessage.OVER_LOTTO_NUMBER);
         }
-        if (Collections.frequency(winningNumbers, Integer.parseInt(input)) == NumberConfig.EQUAL_VALUE.getNumber()) {
+        if (Collections.frequency(winningNumbers, Integer.parseInt(input))
+            == NumberConfig.EQUAL_VALUE.getNumber()) {
             throw new BonusValidationException(BonusExceptionMessage.NOT_DUPLICATE_NUMBER);
         }
 
-    }
-
-    private String inputBonus() {
-        return Console.readLine();
     }
 
     private void parseToInt(String input) {

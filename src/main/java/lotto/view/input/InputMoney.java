@@ -1,6 +1,5 @@
 package lotto.view.input;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.util.exception.MoneyValidationException;
 import lotto.util.exception.message.MoneyExceptionMessage;
 
@@ -8,14 +7,9 @@ public class InputMoney {
 
     private static int money;
 
-    public InputMoney() {
-        String input = inputMoney();
+    public InputMoney(String input) {
         validate(input);
         parseToInt(input);
-    }
-
-    private String inputMoney() {
-        return Console.readLine();
     }
 
     private void validate(String input) {
