@@ -3,6 +3,8 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.util.LottoGeneration;
+import lotto.util.LottoGenerator;
 import lotto.util.config.NumberConfig;
 import lotto.util.config.MoneyConfig;
 import lotto.util.exception.MoneyValidationException;

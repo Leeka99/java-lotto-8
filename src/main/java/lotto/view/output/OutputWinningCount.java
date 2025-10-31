@@ -1,7 +1,7 @@
 package lotto.view.output;
 
 import java.util.List;
-import lotto.domain.Winning;
+import lotto.util.config.Winning;
 import lotto.util.config.NumberConfig;
 
 public class OutputWinningCount {

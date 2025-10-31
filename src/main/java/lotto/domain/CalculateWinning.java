@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import lotto.util.config.MoneyConfig;
 import lotto.util.config.NumberConfig;
+import lotto.util.config.Winning;
 
 public class CalculateWinning {
 

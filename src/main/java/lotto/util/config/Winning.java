@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.util.config;
 
 public enum Winning {
     THREE(3, 5000),
