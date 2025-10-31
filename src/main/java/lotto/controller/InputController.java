@@ -2,6 +2,8 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoPapers;
+import lotto.util.LottoGenerator;
+import lotto.util.RandomLottoGenerator;
 import lotto.view.input.Input;
 import lotto.view.input.InputBonusNumber;
 import lotto.view.input.InputMoney;
@@ -10,6 +12,8 @@ import lotto.view.output.InputMessage;
 import lotto.view.output.OutputLottoPapers;
 
 public class InputController {
+
+    LottoGenerator lottoGenerator = new RandomLottoGenerator();
 
     public InputController() {
         money();
@@ -22,7 +26,7 @@ public class InputController {
             try {
                 InputMessage.money();
                 new InputMoney(Input.read());
-                new LottoPapers(InputMoney.getMoney());
+                new LottoPapers(InputMoney.getMoney(), lottoGenerator);
                 OutputLottoPapers.printPaperNumber(LottoPapers.getPaperNumber());
                 OutputLottoPapers.printLottoPapers(LottoPapers.getLottos());
                 break;

@@ -3,26 +3,30 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.util.LottoGeneration;
 import lotto.util.LottoGenerator;
 import lotto.util.config.NumberConfig;
 import lotto.util.config.MoneyConfig;
 import lotto.util.exception.MoneyValidationException;
 import lotto.util.exception.message.MoneyExceptionMessage;
+import org.assertj.core.util.VisibleForTesting;
 
 public class LottoPapers {
 
     private static int paperNumber;
     private static List<List<Integer>> lottos = new ArrayList<>();
 
+    LottoGenerator lottoGenerator;
 
-    LottoGeneration lotto;
-
-    public LottoPapers(int money) {
+    public LottoPapers(int money, LottoGenerator lottoGenerator) {
         validate(money);
         LottoPapers.paperNumber = calculateLottoPaperNumber(money);
-        this.lotto = new LottoGenerator();
+        this.lottoGenerator = lottoGenerator;
         generateLotto(paperNumber);
+    }
+
+    @VisibleForTesting
+    LottoPapers(int money) {
+        validate(money);
     }
 
     private void validate(int money) {
@@ -39,7 +43,7 @@ public class LottoPapers {
     }
 
     private List<Integer> lotto() {
-        return lotto.generate();
+        return lottoGenerator.generate();
     }
 
     private List<Integer> sortLotto() {
