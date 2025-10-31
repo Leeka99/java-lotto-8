@@ -11,12 +11,18 @@ public class CalculateWinning {
 
     private static List<Integer> lottoResult = new ArrayList<>(
         Collections.nCopies(Winning.values().length, NumberConfig.START_NUMBER.getNumber()));
+    private static List<Integer> winningValue = new ArrayList<>();
+    private static List<String> prizeResult = new ArrayList<>();
     private static double rate;
+    private static String rateLetter;
 
     public CalculateWinning(List<List<Integer>> lottoPapers, List<Integer> lotto, int bonus,
         int money) {
         winningCount(lottoPapers, lotto, bonus);
         winningRate(money);
+
+        saveResult();
+        parseToLetter(rate);
     }
 
     private int count(List<Integer> numbers, List<Integer> lotto) {
@@ -69,11 +75,34 @@ public class CalculateWinning {
         rate = (prize / (double) money) * MoneyConfig.RATE_NUMBER.getNumber();
     }
 
+    private void saveResult() {
+        for (int index = NumberConfig.START_NUMBER.getNumber(); index < lottoResult.size(); index++) {
+            winningValue.add(Winning.values()[index].getWinningCount());
+            prizeResult.add(String.format("%,d", Winning.values()[index].getPrize()));
+        }
+    }
+
+    private void parseToLetter(double rate) {
+        rateLetter =  String.format("%,.1f", rate);
+    }
+
     public static List<Integer> getLottoResult() {
         return lottoResult;
     }
 
     public static double getRate() {
         return rate;
+    }
+
+    public static String getRateLetter() {
+        return rateLetter;
+    }
+
+    public static List<Integer> getWinningValue() {
+        return winningValue;
+    }
+
+    public static List<String> getPrizeResult() {
+        return prizeResult;
     }
 }

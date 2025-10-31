@@ -12,19 +12,19 @@ public class OutputWinningCount {
         System.out.println("---");
     }
 
-    public static void printWinningCount(List<Integer> lottoResult) {
+    public static void printWinningCount(List<Integer> winningValue, List<String> prizeResult, List<Integer> lottoResult) {
         for (int index = NumberConfig.START_NUMBER.getNumber(); index < lottoResult.size(); index++) {
+            int value = winningValue.get(index);
+            String prize = prizeResult.get(index);
             int count = lottoResult.get(index);
+
             if (index == Winning.FIVE_WITH_BONUS.ordinal()) {
-                System.out.println(
-                    Winning.values()[index].getWinningCount() + "개 일치, 보너스 볼 일치 " + "("
-                        + String.format("%,d", Winning.values()[index].getPrize()) + "원) - " + count
-                        + "개");
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개", value, prize, count);
+                System.out.println();
                 continue;
             }
-            System.out.println(
-                Winning.values()[index].getWinningCount() + "개 일치 " + "(" + String.format(
-                    "%,d", Winning.values()[index].getPrize()) + "원) - " + count + "개");
+            System.out.printf("%d개 일치 (%s원) - %d개", value, prize, count);
+            System.out.println();
         }
     }
 

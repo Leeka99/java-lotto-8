@@ -8,8 +8,8 @@ public class OutputController {
 
     public OutputController() {
         OutputWinningCount.printWinningIntro();
-        OutputWinningCount.printWinningCount(CalculateWinning.getLottoResult());
-        OutputWinningRate.printRate(CalculateWinning.getRate());
+        OutputWinningCount.printWinningCount(CalculateWinning.getWinningValue(), CalculateWinning.getPrizeResult(), CalculateWinning.getLottoResult());
+        OutputWinningRate.printRate(CalculateWinning.getRateLetter());
     }
 
 }
