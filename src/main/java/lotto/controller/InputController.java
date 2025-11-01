@@ -16,12 +16,12 @@ public class InputController {
     LottoGenerator lottoGenerator = new RandomLottoGenerator();
 
     public InputController() {
-        money();
-        winningNumber();
-        bonus();
+        inputMoney();
+        inputWinningNumber();
+        inputBonus();
     }
 
-    private void money() {
+    private void inputMoney() {
         while (true) {
             try {
                 InputMessage.money();
@@ -30,33 +30,33 @@ public class InputController {
                 OutputLottoPapers.printPaperNumber(LottoPapers.getPaperNumber());
                 OutputLottoPapers.printLottoPapers(LottoPapers.getLottos());
                 break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }
 
-    private void winningNumber() {
+    private void inputWinningNumber() {
         while (true) {
             try {
                 InputMessage.winningNumber();
                 new InputWinningNumber(Input.read());
                 new Lotto(InputWinningNumber.getWinningNumber());
                 break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }
 
-    private void bonus() {
+    private void inputBonus() {
         while (true) {
             try {
                 InputMessage.bonus();
                 new InputBonusNumber(Input.read(), InputWinningNumber.getWinningNumber());
                 break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
             }
         }
     }
