@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class InputMoneyTest {
+
     @DisplayName("금액에 대해서 공백을 입력하면 예외가 발생한다.")
     @Test
     void inputBlankTest() {
