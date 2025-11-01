@@ -20,13 +20,17 @@ public class OutputWinningCount {
             String prize = prizeResult.get(index);
             int count = lottoResult.get(index);
 
-            if (index == Winning.FIVE_WITH_BONUS.ordinal()) {
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개", value, prize, count);
-                System.out.println();
-                continue;
-            }
-            System.out.printf("%d개 일치 (%s원) - %d개", value, prize, count);
-            System.out.println();
+            matchResult(index, value, prize, count);
         }
+    }
+
+    private static void matchResult(int index, int value, String prize, int count) {
+        if (index == Winning.FIVE_WITH_BONUS.ordinal()) {
+            System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개", value, prize, count);
+            System.out.println();
+            return;
+        }
+        System.out.printf("%d개 일치 (%s원) - %d개", value, prize, count);
+        System.out.println();
     }
 }
