@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.util.config.MoneyConfig;
 import lotto.util.config.NumberConfig;
 import lotto.util.config.Winning;
+import org.assertj.core.util.VisibleForTesting;
 
 public class CalculateWinning {
 
@@ -23,6 +24,19 @@ public class CalculateWinning {
 
         saveResult();
         parseToLetter(rate);
+    }
+
+    @VisibleForTesting
+    CalculateWinning() {
+        saveResult();
+        parseToLetter(rate);
+    }
+
+    @VisibleForTesting
+     static void reset() {
+        lottoResult = new ArrayList<>(Collections.nCopies(Winning.values().length, NumberConfig.START_NUMBER.getNumber()));
+        winningValue = new ArrayList<>();
+        prizeResult = new ArrayList<>();
     }
 
     private int count(List<Integer> numbers, List<Integer> lotto) {

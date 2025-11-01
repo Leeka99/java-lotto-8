@@ -2,11 +2,20 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.util.LottoGenerator;
+import lotto.util.RandomLottoGenerator;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoPapersTest {
+
+    LottoGenerator lottoGenerator = new RandomLottoGenerator();
+
+    @BeforeEach
+    void reset() {
+        LottoPapers.reset();
+    }
 
     @DisplayName("금액에 대해서 0을 입력하면 예외가 발생한다.")
     @Test
@@ -41,7 +50,7 @@ class LottoPapersTest {
     void lottoGenerateLengthTest() {
 
         // given
-        new LottoPapers(10000);
+        new LottoPapers(10000, lottoGenerator);
 
         // when
         int length = LottoPapers.getLottos().size();
@@ -55,7 +64,7 @@ class LottoPapersTest {
     void checkLottoNumberLength() {
 
         // given
-        new LottoPapers(3000);
+        new LottoPapers(3000, lottoGenerator);
 
         // when
         int lottoNumberLength1 = LottoPapers.getLottos().get(0).size();
@@ -73,14 +82,14 @@ class LottoPapersTest {
     void lottoNumberSortTest() {
 
         // given
-        LottoGenerator lottoGenerator = () -> List.of(6,5,4,3,2,1);
+        LottoGenerator lottoGenerator = () -> List.of(6, 5, 4, 3, 2, 1);
         new LottoPapers(1000, lottoGenerator);
 
         // when
         List<Integer> lottoNumbers = LottoPapers.getLottos().getFirst();
 
         // then
-        Assertions.assertThat(lottoNumbers).isEqualTo(List.of(1,2,3,4,5,6));
+        Assertions.assertThat(lottoNumbers).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
 
     }
 

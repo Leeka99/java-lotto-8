@@ -27,6 +27,13 @@ public class LottoPapers {
     @VisibleForTesting
     LottoPapers(int money) {
         validate(money);
+        LottoPapers.paperNumber = calculateLottoPaperNumber(money);
+    }
+
+    @VisibleForTesting
+    static void reset() {
+        paperNumber = 0;
+        lottos = new ArrayList<>();
     }
 
     private void validate(int money) {
