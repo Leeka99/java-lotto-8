@@ -14,5 +14,4 @@ public class OutputLottoPapers {
             System.out.println(paper);
         }
     }
-
 }

@@ -65,5 +65,4 @@ public class InputBonusNumber {
     public static int getBonusNumber() {
         return bonus;
     }
-
 }

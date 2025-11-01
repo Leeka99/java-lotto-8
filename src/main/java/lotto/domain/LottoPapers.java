@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.util.LottoGenerator;
-import lotto.util.config.NumberConfig;
 import lotto.util.config.MoneyConfig;
+import lotto.util.config.NumberConfig;
 import lotto.util.exception.MoneyValidationException;
 import lotto.util.exception.message.MoneyExceptionMessage;
 import org.assertj.core.util.VisibleForTesting;
@@ -40,7 +40,8 @@ public class LottoPapers {
         if (money < MoneyConfig.MONEY_START.getNumber()) {
             throw new MoneyValidationException(MoneyExceptionMessage.NOT_ENOUGT_MONEY);
         }
-        if (money % MoneyConfig.MONEY_START.getNumber() != MoneyConfig.CHECK_MONEY_VALUE.getNumber()) {
+        if (money % MoneyConfig.MONEY_START.getNumber()
+            != MoneyConfig.CHECK_MONEY_VALUE.getNumber()) {
             throw new MoneyValidationException(MoneyExceptionMessage.NOT_REMAINDER_ZERO);
         }
     }

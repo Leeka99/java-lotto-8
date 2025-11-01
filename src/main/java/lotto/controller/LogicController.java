@@ -14,5 +14,4 @@ public class LogicController {
         new CalculateWinning(LottoPapers.getLottos(), InputWinningNumber.getWinningNumber(),
             InputBonusNumber.getBonusNumber(), InputMoney.getMoney());
     }
-
 }

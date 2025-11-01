@@ -2,8 +2,8 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
-import lotto.util.config.NumberConfig;
 import lotto.util.config.LottoConfig;
+import lotto.util.config.NumberConfig;
 import lotto.util.exception.LottoValidationException;
 import lotto.util.exception.message.LottoExceptionMessage;
 

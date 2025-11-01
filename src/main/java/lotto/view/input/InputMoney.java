@@ -28,5 +28,4 @@ public class InputMoney {
     public static int getMoney() {
         return money;
     }
-
 }

@@ -1,8 +1,8 @@
 package lotto.view.output;
 
 import java.util.List;
-import lotto.util.config.Winning;
 import lotto.util.config.NumberConfig;
+import lotto.util.config.Winning;
 
 public class OutputWinningCount {
 
@@ -12,8 +12,10 @@ public class OutputWinningCount {
         System.out.println("---");
     }
 
-    public static void printWinningCount(List<Integer> winningValue, List<String> prizeResult, List<Integer> lottoResult) {
-        for (int index = NumberConfig.START_NUMBER.getNumber(); index < lottoResult.size(); index++) {
+    public static void printWinningCount(List<Integer> winningValue, List<String> prizeResult,
+        List<Integer> lottoResult) {
+        for (int index = NumberConfig.START_NUMBER.getNumber(); index < lottoResult.size();
+            index++) {
             int value = winningValue.get(index);
             String prize = prizeResult.get(index);
             int count = lottoResult.get(index);
@@ -27,5 +29,4 @@ public class OutputWinningCount {
             System.out.println();
         }
     }
-
 }

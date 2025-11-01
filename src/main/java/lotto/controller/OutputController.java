@@ -11,5 +11,4 @@ public class OutputController {
         OutputWinningCount.printWinningCount(CalculateWinning.getWinningValue(), CalculateWinning.getPrizeResult(), CalculateWinning.getLottoResult());
         OutputWinningRate.printRate(CalculateWinning.getRateLetter());
     }
-
 }

@@ -16,5 +16,4 @@ public enum BonusExceptionMessage {
     public String getMessage() {
         return message;
     }
-
 }
