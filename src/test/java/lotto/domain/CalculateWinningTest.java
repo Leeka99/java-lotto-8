@@ -146,4 +146,40 @@ class CalculateWinningTest {
         Assertions.assertThat(rate).isEqualTo(250.0);
     }
 
+    @DisplayName("원 단위에 맞게 변환되는지 테스트한다.")
+    @Test
+    void parsePrizeValue() {
+
+        // given
+        new CalculateWinning();
+
+        // when
+        List<String> prize = CalculateWinning.getPrizeResult();
+
+        // then
+        Assertions.assertThat(prize)
+            .isEqualTo(List.of("5,000", "50,000", "1,500,000", "30,000,000", "2,000,000,000"));
+    }
+
+    @DisplayName("수익률을 소수점 둘째 자리 반올림과 원 단위에 맞게 변환되는지 테스트한다.")
+    @Test
+    void parseRate() {
+
+        // given
+        List<List<Integer>> myLotto = List.of(
+            List.of(1, 3, 8, 19, 25, 40),
+            List.of(8, 10, 19, 23, 44, 45)
+        );
+        List<Integer> winningNumbers = List.of(8, 19, 21, 23, 40, 44);
+        int bonus = 43;
+        int money = 2000;
+
+        new CalculateWinning(myLotto, winningNumbers, bonus, money);
+
+        // when
+        String rate = CalculateWinning.getRateLetter();
+
+        // then
+        Assertions.assertThat(rate).isEqualTo("2,750.0");
+    }
 }
