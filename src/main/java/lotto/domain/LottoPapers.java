@@ -32,7 +32,7 @@ public class LottoPapers {
 
     @VisibleForTesting
     static void reset() {
-        paperNumber = 0;
+        paperNumber = NumberConfig.START_NUMBER.getNumber();
         lottos = new ArrayList<>();
     }
 
