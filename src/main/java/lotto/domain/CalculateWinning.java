@@ -33,8 +33,9 @@ public class CalculateWinning {
     }
 
     @VisibleForTesting
-     static void reset() {
-        lottoResult = new ArrayList<>(Collections.nCopies(Winning.values().length, NumberConfig.START_NUMBER.getNumber()));
+    static void reset() {
+        lottoResult = new ArrayList<>(
+            Collections.nCopies(Winning.values().length, NumberConfig.START_NUMBER.getNumber()));
         winningValue = new ArrayList<>();
         prizeResult = new ArrayList<>();
     }
@@ -42,7 +43,8 @@ public class CalculateWinning {
     private int count(List<Integer> numbers, List<Integer> lotto) {
         int count = NumberConfig.START_NUMBER.getNumber();
         for (int winningNumber : lotto) {
-            if (Collections.frequency(numbers, winningNumber) == NumberConfig.EQUAL_VALUE.getNumber()) {
+            if (Collections.frequency(numbers, winningNumber)
+                == NumberConfig.EQUAL_VALUE.getNumber()) {
                 count++;
             }
         }
@@ -50,22 +52,28 @@ public class CalculateWinning {
     }
 
     private void saveCount(int count, List<Integer> numbers, int bonus) {
-        if (count == Winning.FIVE_WITH_BONUS.getWinningCount() && Collections.frequency(numbers, bonus) == NumberConfig.EQUAL_VALUE.getNumber()) {
-            lottoResult.set(Winning.FIVE_WITH_BONUS.ordinal(), lottoResult.get(Winning.FIVE_WITH_BONUS.ordinal()) + NumberConfig.PLUS_ONE.getNumber());
-            return;
+        if (count == Winning.FIVE_WITH_BONUS.getWinningCount()
+            && Collections.frequency(numbers, bonus) == NumberConfig.EQUAL_VALUE.getNumber()) {
+            addLottoResult(Winning.FIVE_WITH_BONUS);
         }
         if (count == Winning.SIX.getWinningCount()) {
-            lottoResult.set(Winning.SIX.ordinal(), lottoResult.get(Winning.SIX.ordinal()) + NumberConfig.PLUS_ONE.getNumber());
+            addLottoResult(Winning.SIX);
         }
         if (count == Winning.THREE.getWinningCount()) {
-            lottoResult.set(Winning.THREE.ordinal(), lottoResult.get(Winning.THREE.ordinal()) + NumberConfig.PLUS_ONE.getNumber());
+            addLottoResult(Winning.THREE);
         }
         if (count == Winning.FOUR.getWinningCount()) {
-            lottoResult.set(Winning.FOUR.ordinal(), lottoResult.get(Winning.FOUR.ordinal()) + NumberConfig.PLUS_ONE.getNumber());
+            addLottoResult(Winning.FOUR);
         }
         if (count == Winning.FIVE.getWinningCount()) {
-            lottoResult.set(Winning.FIVE.ordinal(), lottoResult.get(Winning.FIVE.ordinal()) + NumberConfig.PLUS_ONE.getNumber());
+            addLottoResult(Winning.FIVE);
         }
+    }
+
+    private void addLottoResult(Winning winning) {
+        int index = winning.ordinal();
+        lottoResult.set(index, lottoResult.get(index)
+            + NumberConfig.PLUS_ONE.getNumber());
     }
 
     private void winningCount(List<List<Integer>> lottoPapers, List<Integer> lotto, int bonus) {
@@ -77,10 +85,10 @@ public class CalculateWinning {
 
     private double calculatePrize() {
         double prize = NumberConfig.START_NUMBER.getNumber();
-        for (int index = NumberConfig.START_NUMBER.getNumber(); index < lottoResult.size(); index++) {
+        for (int index = NumberConfig.START_NUMBER.getNumber(); index < lottoResult.size();
+            index++) {
             prize += Winning.values()[index].getPrize() * lottoResult.get(index);
         }
-
         return prize;
     }
 
@@ -90,14 +98,15 @@ public class CalculateWinning {
     }
 
     private void saveResult() {
-        for (int index = NumberConfig.START_NUMBER.getNumber(); index < lottoResult.size(); index++) {
+        for (int index = NumberConfig.START_NUMBER.getNumber(); index < lottoResult.size();
+            index++) {
             winningValue.add(Winning.values()[index].getWinningCount());
             prizeResult.add(String.format("%,d", Winning.values()[index].getPrize()));
         }
     }
 
     private void parseToLetter(double rate) {
-        rateLetter =  String.format("%,.1f", rate);
+        rateLetter = String.format("%,.1f", rate);
     }
 
     public static List<Integer> getLottoResult() {
