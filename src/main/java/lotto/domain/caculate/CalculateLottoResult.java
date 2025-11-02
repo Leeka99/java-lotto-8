@@ -1,43 +1,25 @@
-package lotto.domain;
+package lotto.domain.caculate;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.util.config.MoneyConfig;
 import lotto.util.config.NumberConfig;
 import lotto.util.config.Winning;
 import org.assertj.core.util.VisibleForTesting;
 
-public class CalculateWinning {
+public class CalculateLottoResult {
 
     private static List<Integer> lottoResult = new ArrayList<>(
         Collections.nCopies(Winning.values().length, NumberConfig.START_NUMBER.getNumber()));
-    private static List<Integer> winningValue = new ArrayList<>();
-    private static List<String> prizeResult = new ArrayList<>();
-    private static double rate;
-    private static String rateLetter;
 
-    public CalculateWinning(List<List<Integer>> lottoPapers, List<Integer> lotto, int bonus,
-        int money) {
+    public CalculateLottoResult(List<List<Integer>> lottoPapers, List<Integer> lotto, int bonus) {
         winningCount(lottoPapers, lotto, bonus);
-        winningRate(money);
-
-        saveResult();
-        parseToLetter(rate);
     }
 
     @VisibleForTesting
-    CalculateWinning() {
-        saveResult();
-        parseToLetter(rate);
-    }
-
-    @VisibleForTesting
-    static void reset() {
+    public static void reset() {
         lottoResult = new ArrayList<>(
             Collections.nCopies(Winning.values().length, NumberConfig.START_NUMBER.getNumber()));
-        winningValue = new ArrayList<>();
-        prizeResult = new ArrayList<>();
     }
 
     private int count(List<Integer> numbers, List<Integer> lotto) {
@@ -83,49 +65,7 @@ public class CalculateWinning {
         }
     }
 
-    private double calculatePrize() {
-        double prize = NumberConfig.START_NUMBER.getNumber();
-        for (int index = NumberConfig.START_NUMBER.getNumber(); index < lottoResult.size();
-            index++) {
-            prize += Winning.values()[index].getPrize() * lottoResult.get(index);
-        }
-        return prize;
-    }
-
-    private void winningRate(int money) {
-        double prize = calculatePrize();
-        rate = (prize / (double) money) * MoneyConfig.RATE_NUMBER.getNumber();
-    }
-
-    private void saveResult() {
-        for (int index = NumberConfig.START_NUMBER.getNumber(); index < lottoResult.size();
-            index++) {
-            winningValue.add(Winning.values()[index].getWinningCount());
-            prizeResult.add(String.format("%,d", Winning.values()[index].getPrize()));
-        }
-    }
-
-    private void parseToLetter(double rate) {
-        rateLetter = String.format("%,.1f", rate);
-    }
-
     public static List<Integer> getLottoResult() {
         return lottoResult;
-    }
-
-    public static double getRate() {
-        return rate;
-    }
-
-    public static String getRateLetter() {
-        return rateLetter;
-    }
-
-    public static List<Integer> getWinningValue() {
-        return winningValue;
-    }
-
-    public static List<String> getPrizeResult() {
-        return prizeResult;
     }
 }

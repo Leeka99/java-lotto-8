@@ -12,11 +12,10 @@ public class OutputWinningCount {
         System.out.println("---");
     }
 
-    public static void printWinningCount(List<Integer> winningValue, List<String> prizeResult,
-        List<Integer> lottoResult) {
+    public static void printWinningCount(List<String> prizeResult, List<Integer> lottoResult) {
         for (int index = NumberConfig.START_NUMBER.getNumber(); index < lottoResult.size();
             index++) {
-            int value = winningValue.get(index);
+            int value = Winning.values()[index].getWinningCount();
             String prize = prizeResult.get(index);
             int count = lottoResult.get(index);
 
